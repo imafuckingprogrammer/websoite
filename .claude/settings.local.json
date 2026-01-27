@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(powershell.exe -Command \"Remove-Item -Recurse -Force ''C:\\\\Users\\\\Admin\\\\Documents\\\\whats this\\\\.next''\")",
+      "Bash(npm run build:*)",
+      "Bash(powershell.exe -Command \"New-Item -ItemType Directory -Force -Path ''C:\\\\Users\\\\Admin\\\\Documents\\\\whats this\\\\.next''; New-Item -ItemType File -Force -Path ''C:\\\\Users\\\\Admin\\\\Documents\\\\whats this\\\\.next\\\\trace''\")",
+      "Bash(find:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm install:*)"
+    ]
+  }
+}

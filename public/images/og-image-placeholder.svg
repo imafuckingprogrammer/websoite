@@ -1,0 +1,20 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Temporary placeholder - Replace with actual screenshot -->
+  <rect width="1200" height="630" fill="#f5f5f5"/>
+
+  <text x="600" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#333">
+    REPLACE THIS IMAGE
+  </text>
+
+  <text x="600" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#666">
+    Take a screenshot of your landing page
+  </text>
+
+  <text x="600" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#666">
+    Export as PNG (1200x630px)
+  </text>
+
+  <text x="600" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#666">
+    Save as: /public/images/og-image.png
+  </text>
+</svg>
