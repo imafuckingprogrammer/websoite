@@ -52,7 +52,7 @@ export const textVariant = (delay?: number): Variants => {
   };
 };
 
-export const slideIn = (direction: 'left' | 'right' | 'up' | 'down', type: "spring" | "tween" | "inertia" | "keyframes" | "just", delay: number, duration: number): Variants => {
+export const slideIn = (direction: 'left' | 'right' | 'up' | 'down', type: string, delay: number, duration: number): Variants => {
   return {
     hidden: {
       x: direction === 'left' ? '-100%' : direction === 'right' ? '100%' : 0,
@@ -62,7 +62,7 @@ export const slideIn = (direction: 'left' | 'right' | 'up' | 'down', type: "spri
       x: 0,
       y: 0,
       transition: {
-        type,
+        type: type as any,
         delay,
         duration,
         ease: 'easeOut',
