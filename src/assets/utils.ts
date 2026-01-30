@@ -16,7 +16,7 @@ export const fadeIn = (direction: 'up' | 'down' | 'left' | 'right' = 'up', delay
         type: 'tween',
         duration: 0.8,
         delay,
-        ease: [0.25, 0.25, 0.25, 0.75],
+        ease: [0.25, 0.25, 0.25, 0.75] as const,
       },
     },
   };

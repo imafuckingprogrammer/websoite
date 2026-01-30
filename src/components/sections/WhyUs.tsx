@@ -49,7 +49,7 @@ const WhyUs: React.FC = () => {
       y: 0, 
       transition: { 
         duration: 0.6, 
-        ease: [0.165, 0.84, 0.44, 1] 
+        ease: [0.165, 0.84, 0.44, 1] as const
       } 
     },
   };
@@ -135,7 +135,7 @@ const WhyUs: React.FC = () => {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ 
                     duration: 0.6, 
-                    ease: [0.165, 0.84, 0.44, 1] 
+                    ease: [0.165, 0.84, 0.44, 1] as const
                   }}
                 />
               </motion.div>

@@ -7,7 +7,8 @@
       "Bash(powershell.exe -Command \"New-Item -ItemType Directory -Force -Path ''C:\\\\Users\\\\Admin\\\\Documents\\\\whats this\\\\.next''; New-Item -ItemType File -Force -Path ''C:\\\\Users\\\\Admin\\\\Documents\\\\whats this\\\\.next\\\\trace''\")",
       "Bash(find:*)",
       "Bash(npx tsc:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(npx next build)"
     ]
   }
 }

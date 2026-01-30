@@ -47,7 +47,7 @@ const TextReveal: React.FC<TextRevealProps> = ({
       rotateX: 0,
       transition: {
         duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
+        ease: [0.22, 1, 0.36, 1] as const
       }
     }
   };
@@ -128,7 +128,7 @@ export const LineReveal: React.FC<LineRevealProps> = ({
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
+        ease: [0.22, 1, 0.36, 1] as const
       }
     }
   };

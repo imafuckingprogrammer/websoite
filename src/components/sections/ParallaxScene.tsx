@@ -80,7 +80,7 @@ const ParallaxScene: React.FC = () => {
       transition: { 
         duration: 0.9, 
         delay, 
-        ease: [0.04, 0.62, 0.23, 0.98] 
+        ease: [0.04, 0.62, 0.23, 0.98] as const
       }
     })
   };
@@ -91,10 +91,10 @@ const ParallaxScene: React.FC = () => {
     visible: (delay: number) => ({
       opacity: 1,
       scale: 1,
-      transition: { 
+      transition: {
         duration: 1.2,
         delay,
-        ease: [0.04, 0.62, 0.23, 0.98] 
+        ease: [0.04, 0.62, 0.23, 0.98] as const
       }
     })
   };
