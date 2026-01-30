@@ -5,17 +5,40 @@ import { motion } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
 import Toast from '../ui/Toast';
 import AnimatedButton from '../ui/AnimatedButton';
+import { supabase } from '../../lib/supabase';
 
 const Footer: React.FC = () => {
   const { darkMode } = useTheme();
   const currentYear = new Date().getFullYear();
-  const [toast, setToast] = useState<string | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
   const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    setToast("You're in! We'll keep you posted on the good stuff.");
-    setEmail('');
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert([{ email }]);
+
+      if (error) {
+        if (error.code === '23505') {
+          setToast({ message: "You're already subscribed!", type: 'success' });
+        } else {
+          throw error;
+        }
+      } else {
+        setToast({ message: "You're in! We'll keep you posted on the good stuff.", type: 'success' });
+      }
+      setEmail('');
+    } catch (err) {
+      console.error('Error subscribing:', err);
+      setToast({ message: 'Something went wrong. Please try again.', type: 'error' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
@@ -50,10 +73,12 @@ const Footer: React.FC = () => {
                 required
                 className={`flex-1 px-5 py-4 rounded-2xl text-base bg-transparent border-2 ${darkMode ? 'border-white/10 focus:border-white/30' : 'border-black/10 focus:border-black/30'} outline-none transition-colors`}
               />
-              <AnimatedButton type="submit">Count Me In</AnimatedButton>
+              <AnimatedButton type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Joining...' : 'Count Me In'}
+              </AnimatedButton>
             </form>
           </div>
-          <Toast show={!!toast} message={toast || ''} onClose={() => setToast(null)} type="success" />
+          <Toast show={!!toast} message={toast?.message || ''} onClose={() => setToast(null)} type={toast?.type || 'success'} />
         </motion.div>
 
         <motion.div
@@ -122,9 +147,9 @@ const Footer: React.FC = () => {
           <div className="flex items-center gap-2">
             <p className={`text-sm ${darkMode ? 'text-white/50' : 'text-black/50'}`}>&copy; {currentYear} waht! All rights reserved.</p>
             <span className={`hidden sm:block ${darkMode ? 'text-white/30' : 'text-black/30'}`}>|</span>
-            <a href="#" className={`text-sm ${darkMode ? 'text-white/50 hover:text-white/70' : 'text-black/50 hover:text-black/70'} transition-colors`}>Privacy Policy</a>
+            <a href="/privacy" className={`text-sm ${darkMode ? 'text-white/50 hover:text-white/70' : 'text-black/50 hover:text-black/70'} transition-colors`}>Privacy Policy</a>
             <span className={`${darkMode ? 'text-white/30' : 'text-black/30'}`}>|</span>
-            <a href="#" className={`text-sm ${darkMode ? 'text-white/50 hover:text-white/70' : 'text-black/50 hover:text-black/70'} transition-colors`}>Terms of Use</a>
+            <a href="/terms" className={`text-sm ${darkMode ? 'text-white/50 hover:text-white/70' : 'text-black/50 hover:text-black/70'} transition-colors`}>Terms of Service</a>
           </div>
 
           <div className="flex items-center gap-4">

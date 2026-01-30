@@ -4,7 +4,7 @@ import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
 
-// Random fonts for the easter egg (desktop only)
+// Random fonts for the easter egg
 const randomFonts = [
   'Georgia, serif',
   'Times New Roman, serif',
@@ -18,25 +18,40 @@ const randomFonts = [
   'Arial Black, sans-serif',
 ];
 
-// Single letter component with hover effect (desktop only)
-const HoverLetter: React.FC<{ char: string; darkMode: boolean; isMobile: boolean }> = ({ char, darkMode, isMobile }) => {
+// Word component with hover effect (desktop) or auto-cycle (mobile/initial)
+const HoverWord: React.FC<{
+  word: string;
+  darkMode: boolean;
+  isMobile: boolean | null;
+  isAutoActive?: boolean;
+}> = ({ word, darkMode, isMobile, isAutoActive = false }) => {
   const [font, setFont] = useState<string | null>(null);
 
   const handleMouseEnter = useCallback(() => {
-    if (isMobile) return;
+    if (isMobile || isMobile === null) return;
     const randomFont = randomFonts[Math.floor(Math.random() * randomFonts.length)];
     setFont(randomFont);
   }, [isMobile]);
 
   const handleMouseLeave = useCallback(() => {
+    if (isMobile || isMobile === null) return;
     setFont(null);
-  }, []);
+  }, [isMobile]);
 
-  if (char === ' ') return <span>&nbsp;</span>;
+  // For auto-cycle (initial load on both, continuous on mobile)
+  useEffect(() => {
+    if (isAutoActive) {
+      const randomFont = randomFonts[Math.floor(Math.random() * randomFonts.length)];
+      setFont(randomFont);
+    } else if (!isAutoActive && isMobile !== null) {
+      // Reset when not active (both mobile and desktop)
+      setFont(null);
+    }
+  }, [isAutoActive, isMobile]);
 
   return (
     <span
-      className="inline-block cursor-default md:cursor-pointer transition-all duration-150"
+      className="inline-block cursor-default md:cursor-pointer transition-all duration-200"
       style={{
         fontFamily: font || 'inherit',
         color: darkMode ? '#ffffff' : '#000000',
@@ -44,21 +59,21 @@ const HoverLetter: React.FC<{ char: string; darkMode: boolean; isMobile: boolean
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {char}
+      {word}
     </span>
   );
 };
 
 // WAHT! with RGB effect - always active on mobile
-const WahtText: React.FC<{ darkMode: boolean; isMobile: boolean }> = ({ darkMode, isMobile }) => {
+const WahtText: React.FC<{ darkMode: boolean; isMobile: boolean | null }> = ({ darkMode, isMobile }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const shouldAnimate = isMobile || isHovered;
+  const shouldAnimate = isMobile === true || isHovered;
 
   return (
     <motion.span
       className="inline-block cursor-pointer"
-      onMouseEnter={() => !isMobile && setIsHovered(true)}
-      onMouseLeave={() => !isMobile && setIsHovered(false)}
+      onMouseEnter={() => isMobile === false && setIsHovered(true)}
+      onMouseLeave={() => isMobile === false && setIsHovered(false)}
       animate={shouldAnimate ? {
         color: [
           '#ff0000', '#ff8000', '#ffff00', '#80ff00',
@@ -81,35 +96,17 @@ const WahtText: React.FC<{ darkMode: boolean; isMobile: boolean }> = ({ darkMode
   );
 };
 
-// Line component that renders letters with hover effect
-const HeroLine: React.FC<{ text: string; darkMode: boolean; isMobile: boolean; includeWaht?: boolean }> = ({
-  text, darkMode, isMobile, includeWaht = false
-}) => {
-  if (includeWaht) {
-    return (
-      <>
-        {text.split('').map((char, i) => (
-          <HoverLetter key={i} char={char} darkMode={darkMode} isMobile={isMobile} />
-        ))}
-        <WahtText darkMode={darkMode} isMobile={isMobile} />
-      </>
-    );
-  }
-
-  return (
-    <>
-      {text.split('').map((char, i) => (
-        <HoverLetter key={i} char={char} darkMode={darkMode} isMobile={isMobile} />
-      ))}
-    </>
-  );
-};
-
 const Hero: React.FC = () => {
   const { darkMode } = useTheme();
   const heroRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null); // null = not yet determined
+  const [activeWordIndex, setActiveWordIndex] = useState(-1);
+  const [initialCycleDone, setInitialCycleDone] = useState(false);
 
+  // All words in the hero (excluding WAHT! which has its own effect)
+  const allWords = ['Websites', 'that', 'make', 'people', 'say'];
+
+  // Detect mobile
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -118,6 +115,63 @@ const Hero: React.FC = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Initial fast cycle on load (both mobile and desktop)
+  useEffect(() => {
+    if (initialCycleDone || isMobile === null) return;
+
+    // Start after a brief delay for the entrance animation
+    const startDelay = setTimeout(() => {
+      setActiveWordIndex(0);
+    }, 1000);
+
+    return () => clearTimeout(startDelay);
+  }, [initialCycleDone, isMobile]);
+
+  // Handle the cycling logic
+  useEffect(() => {
+    if (activeWordIndex === -1 || isMobile === null) return;
+
+    // During initial cycle: 250ms, after: 500ms (mobile only)
+    const isInitialCycle = !initialCycleDone;
+    const interval = isInitialCycle ? 250 : 500;
+
+    const timer = setTimeout(() => {
+      const nextIndex = activeWordIndex + 1;
+
+      if (nextIndex >= allWords.length) {
+        // Completed one cycle
+        if (!initialCycleDone) {
+          setInitialCycleDone(true);
+          if (!isMobile) {
+            // Desktop: stop cycling after initial
+            setActiveWordIndex(-1);
+          } else {
+            // Mobile: continue cycling
+            setActiveWordIndex(0);
+          }
+        } else {
+          // Already past initial, loop (mobile only)
+          setActiveWordIndex(0);
+        }
+      } else {
+        setActiveWordIndex(nextIndex);
+      }
+    }, interval);
+
+    return () => clearTimeout(timer);
+  }, [activeWordIndex, initialCycleDone, isMobile, allWords.length]);
+
+  // When resizing from mobile to desktop, stop cycling
+  useEffect(() => {
+    if (isMobile === false && initialCycleDone) {
+      setActiveWordIndex(-1);
+    }
+    // When resizing from desktop to mobile, start cycling
+    if (isMobile === true && initialCycleDone && activeWordIndex === -1) {
+      setActiveWordIndex(0);
+    }
+  }, [isMobile, initialCycleDone, activeWordIndex]);
 
   const containerVariants = {
     hidden: {},
@@ -138,6 +192,13 @@ const Hero: React.FC = () => {
     }
   };
 
+  // Get the global index for a word based on line and word position
+  const getGlobalIndex = (lineIndex: number, wordIndex: number) => {
+    if (lineIndex === 0) return wordIndex; // "Websites" = 0, "that" = 1
+    if (lineIndex === 1) return 2 + wordIndex; // "make" = 2, "people" = 3
+    return 4 + wordIndex; // "say" = 4
+  };
+
   return (
     <section
       ref={heroRef}
@@ -153,19 +214,30 @@ const Hero: React.FC = () => {
           initial="hidden"
           animate="visible"
         >
+          {/* Line 1: "Websites that" */}
           <div className="overflow-hidden">
             <motion.span className="block" variants={lineVariants}>
-              <HeroLine text="Websites that" darkMode={darkMode} isMobile={isMobile} />
+              <HoverWord word="Websites" darkMode={darkMode} isMobile={isMobile} isAutoActive={activeWordIndex === 0} />
+              <span>&nbsp;</span>
+              <HoverWord word="that" darkMode={darkMode} isMobile={isMobile} isAutoActive={activeWordIndex === 1} />
             </motion.span>
           </div>
+
+          {/* Line 2: "make people" */}
           <div className="overflow-hidden">
             <motion.span className="block" variants={lineVariants}>
-              <HeroLine text="make people" darkMode={darkMode} isMobile={isMobile} />
+              <HoverWord word="make" darkMode={darkMode} isMobile={isMobile} isAutoActive={activeWordIndex === 2} />
+              <span>&nbsp;</span>
+              <HoverWord word="people" darkMode={darkMode} isMobile={isMobile} isAutoActive={activeWordIndex === 3} />
             </motion.span>
           </div>
+
+          {/* Line 3: "say WAHT!" */}
           <div className="overflow-hidden">
             <motion.span className="block" variants={lineVariants}>
-              <HeroLine text="say " darkMode={darkMode} isMobile={isMobile} includeWaht />
+              <HoverWord word="say" darkMode={darkMode} isMobile={isMobile} isAutoActive={activeWordIndex === 4} />
+              <span>&nbsp;</span>
+              <WahtText darkMode={darkMode} isMobile={isMobile} />
             </motion.span>
           </div>
         </motion.h1>

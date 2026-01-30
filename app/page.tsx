@@ -89,7 +89,7 @@ function IntroSection() {
             ))}
           </motion.p>
 
-          <div>
+          <div className="flex justify-center md:justify-end">
             <AnimatedButton onClick={scrollToWork}>
               Explore Our Work
             </AnimatedButton>

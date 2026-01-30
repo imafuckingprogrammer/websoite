@@ -2,9 +2,9 @@
 
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { useForm, ValidationError } from '@formspree/react';
 import { useTheme } from '../../contexts/ThemeContext';
 import AnimatedButton from '../ui/AnimatedButton';
+import { supabase } from '../../lib/supabase';
 
 const Contact: React.FC = () => {
   const { darkMode } = useTheme();
@@ -13,14 +13,15 @@ const Contact: React.FC = () => {
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
   const isFormInView = useInView(formRef, { once: true, margin: "-100px" });
 
-  const [state, handleSubmit] = useForm(process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID || "xkgraoba");
-
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
+    company: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -29,9 +30,30 @@ const Contact: React.FC = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await handleSubmit(e);
-    if (state.succeeded) {
-      setFormData({ name: '', email: '', subject: '', message: '' });
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const { error: supabaseError } = await supabase
+        .from('contact_messages')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company || null,
+            message: formData.message,
+          }
+        ]);
+
+      if (supabaseError) throw supabaseError;
+
+      setIsSuccess(true);
+      setFormData({ name: '', email: '', company: '', message: '' });
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -126,7 +148,6 @@ const Contact: React.FC = () => {
                     } outline-none transition-colors`}
                     placeholder="Your name"
                   />
-                  <ValidationError prefix="Name" field="name" errors={state.errors} />
                 </div>
 
                 <div>
@@ -145,27 +166,24 @@ const Contact: React.FC = () => {
                     } outline-none transition-colors`}
                     placeholder="your@email.com"
                   />
-                  <ValidationError prefix="Email" field="email" errors={state.errors} />
                 </div>
               </motion.div>
 
               <motion.div variants={formItemVariants}>
-                <label htmlFor="subject" className={`block text-sm font-medium mb-2 ${darkMode ? 'text-white/70' : 'text-black/70'}`}>
-                  Subject
+                <label htmlFor="company" className={`block text-sm font-medium mb-2 ${darkMode ? 'text-white/70' : 'text-black/70'}`}>
+                  Company <span className={`${darkMode ? 'text-white/40' : 'text-black/40'}`}>(optional)</span>
                 </label>
                 <input
                   type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
+                  id="company"
+                  name="company"
+                  value={formData.company}
                   onChange={handleInputChange}
-                  required
                   className={`w-full px-5 py-4 rounded-2xl text-base bg-transparent border-2 ${
                     darkMode ? 'border-white/10 focus:border-white/30' : 'border-black/10 focus:border-black/30'
                   } outline-none transition-colors`}
-                  placeholder="Project inquiry"
+                  placeholder="Your company"
                 />
-                <ValidationError prefix="Subject" field="subject" errors={state.errors} />
               </motion.div>
 
               <motion.div variants={formItemVariants}>
@@ -184,11 +202,10 @@ const Contact: React.FC = () => {
                   } outline-none transition-colors resize-none`}
                   placeholder="Tell us about your project..."
                 />
-                <ValidationError prefix="Message" field="message" errors={state.errors} />
               </motion.div>
 
               <motion.div variants={formItemVariants}>
-                {state.succeeded ? (
+                {isSuccess ? (
                   <button
                     type="button"
                     disabled
@@ -197,19 +214,19 @@ const Contact: React.FC = () => {
                     Message Sent!
                   </button>
                 ) : (
-                  <AnimatedButton type="submit" disabled={state.submitting}>
-                    {state.submitting ? 'Sending...' : 'Send Message'}
+                  <AnimatedButton type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </AnimatedButton>
                 )}
               </motion.div>
 
-              {state.errors && (
+              {error && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="text-red-500 text-sm"
                 >
-                  Please fix the errors above and try again.
+                  {error}
                 </motion.div>
               )}
             </form>
