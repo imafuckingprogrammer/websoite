@@ -23,7 +23,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-2xl font-bold mb-4">1. Introduction</h2>
               <p>
-                WAHT! ("we", "our", or "us") respects your privacy and is committed to protecting your personal data.
+                Sriracha Creative ("we", "our", or "us") respects your privacy and is committed to protecting your personal data.
                 This privacy policy explains how we collect, use, and safeguard your information when you visit our
                 website or use our services.
               </p>
@@ -122,7 +122,7 @@ export default function PrivacyPage() {
               <h2 className="text-2xl font-bold mb-4">11. Contact Us</h2>
               <p>
                 For privacy-related questions or to exercise your rights, contact us at{' '}
-                <a href="mailto:hello@waht.agency" className="underline">hello@waht.agency</a>
+                <a href="mailto:srirachacreative@gmail.com" className="underline">srirachacreative@gmail.com</a>
               </p>
             </section>
 

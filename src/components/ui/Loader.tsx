@@ -14,7 +14,7 @@ const Loader: React.FC<LoaderProps> = ({ loading }) => {
 
   useEffect(() => {
     if (loading) {
-      // ? -> ?? -> ??? -> ! sequence
+      // ^ -> ^^ -> ^^^ -> ^ sequence
       const timings = [0, 250, 500, 750];
       const timers = timings.map((delay, index) =>
         setTimeout(() => setStage(index), delay)
@@ -25,11 +25,11 @@ const Loader: React.FC<LoaderProps> = ({ loading }) => {
 
   const getText = () => {
     switch(stage) {
-      case 0: return '?';
-      case 1: return '??';
-      case 2: return '???';
-      case 3: return '!';
-      default: return '?';
+      case 0: return '^';
+      case 1: return '^^';
+      case 2: return '^^^';
+      case 3: return '^';
+      default: return '^';
     }
   };
 

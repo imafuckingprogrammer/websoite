@@ -17,11 +17,11 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Digital Commerce Platform',
-    category: 'E-Commerce',
-    description: 'A modern e-commerce experience with seamless checkout and inventory management.',
-    image: 'https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&w=1200&q=80',
-    url: '#'
+    title: 'Eblon Dynamics',
+    category: 'Industrial',
+    description: 'Corporate web presence and full branding for a heavy machinery parts supplier operating across Syria, UAE, and Lebanon. Clean, modern design with responsive layout.',
+    image: '/images/projects/eblondynamics.png',
+    url: 'https://eblondynamics.com'
   },
   {
     id: 2,
@@ -29,23 +29,23 @@ const projects: Project[] = [
     category: 'Finance',
     description: 'Real-time analytics and portfolio management for modern investors.',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
-    url: '#'
+    url: '/redirect/fintech'
   },
   {
     id: 3,
-    title: 'Healthcare Portal',
-    category: 'Healthcare',
-    description: 'Patient-centered telemedicine platform with appointment scheduling and records.',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
-    url: '#'
+    title: 'FN Geodrilling',
+    category: 'Construction',
+    description: 'Website and branding for a geotechnical drilling company in the Dominican Republic. Clean, bilingual design with SEO optimization.',
+    image: '/images/projects/fngeodrilling.png',
+    url: 'https://fngeodrilling.com'
   },
   {
     id: 4,
-    title: 'Restaurant Booking App',
-    category: 'Hospitality',
-    description: 'Streamlined reservations and table management for dining establishments.',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
-    url: '#'
+    title: 'Trend Art',
+    category: 'Marketing (Demo)',
+    description: 'Highly animated demo website for a marketing agency in the UAE. Features splash cursor effects, rich animations, and bold visual storytelling.',
+    image: '/images/projects/trendart.png',
+    url: 'https://what-is-this-vk7s.vercel.app/'
   }
 ];
 

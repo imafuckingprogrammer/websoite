@@ -18,7 +18,7 @@ const navLinks: NavLink[] = [
   { name: 'Contact', href: '#contact' },
 ];
 
-const Navbar: React.FC<{ animate?: boolean }> = ({ animate = true }) => {
+const Navbar: React.FC<{ animate?: boolean; onMenuChange?: (open: boolean) => void }> = ({ animate = true, onMenuChange }) => {
   const { darkMode, toggleDarkMode } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -56,11 +56,12 @@ const Navbar: React.FC<{ animate?: boolean }> = ({ animate = true }) => {
     } else {
       document.body.style.overflow = 'unset';
     }
+    onMenuChange?.(menuOpen);
     return () => {
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'unset';
     };
-  }, [menuOpen]);
+  }, [menuOpen, onMenuChange]);
 
   return (
     <>
@@ -111,12 +112,13 @@ const Navbar: React.FC<{ animate?: boolean }> = ({ animate = true }) => {
               </div>
             </motion.button>
 
-            <a
-              href="mailto:hello@waht.agency"
-              className={`hidden md:block text-sm ${darkMode ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'} transition-colors`}
+            <button
+              onClick={() => handleLinkClick('#home')}
+              className={`text-sm tracking-tight transition-colors ${darkMode ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'}`}
             >
-              hello@waht.agency
-            </a>
+              <span className="font-medium">sriracha</span>
+              <span className={`${darkMode ? 'text-white/40' : 'text-black/40'}`}> creative</span>
+            </button>
           </div>
 
           <div className="flex items-center gap-3">
@@ -176,26 +178,22 @@ const Navbar: React.FC<{ animate?: boolean }> = ({ animate = true }) => {
               >
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                   <a
-                    href="mailto:hello@waht.agency"
+                    href="mailto:srirachacreative@gmail.com"
                     className={`text-sm ${darkMode ? 'text-white/50 hover:text-white' : 'text-black/50 hover:text-black'} transition-colors`}
                   >
-                    hello@waht.agency
+                    srirachacreative@gmail.com
                   </a>
                   <div className="flex items-center gap-6">
-                    {[
-                      { name: 'Instagram', url: 'https://instagram.com/waht.agency' },
-                      { name: 'X', url: 'https://x.com/wahtagency' },
-                      { name: 'GitHub', url: 'https://github.com/wahtagency' },
-                    ].map((link) => (
-                      <a
-                        key={link.name}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`text-sm ${darkMode ? 'text-white/50 hover:text-white' : 'text-black/50 hover:text-black'} transition-colors`}
+                    {['Instagram', 'X', 'GitHub'].map((name) => (
+                      <span
+                        key={name}
+                        className={`relative group text-sm cursor-default ${darkMode ? 'text-white/50' : 'text-black/50'}`}
                       >
-                        {link.name}
-                      </a>
+                        {name}
+                        <span className={`absolute -top-6 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity ${darkMode ? 'bg-white/10 text-white/70' : 'bg-black/10 text-black/70'}`}>
+                          Coming soon
+                        </span>
+                      </span>
                     ))}
                   </div>
                 </div>

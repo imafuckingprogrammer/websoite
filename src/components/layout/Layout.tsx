@@ -13,6 +13,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { darkMode } = useTheme();
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   
   // Handle scroll indicator visibility
   useEffect(() => {
@@ -44,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         transition={{ duration: 0.5 }}
       >
         {/* Navbar */}
-        <Navbar />
+        <Navbar onMenuChange={setMenuOpen} />
         
         {/* Main content */}
         <main className="flex-grow">
@@ -53,7 +54,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         
         {/* Back to top button */}
         <AnimatePresence>
-          {showScrollIndicator && (
+          {showScrollIndicator && !menuOpen && (
             <motion.button
               onClick={scrollToTop}
               className={`fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 w-10 h-10 md:w-12 md:h-12 

@@ -4,7 +4,7 @@ User-agent: *
 Allow: /
 
 # Specify sitemap location
-Sitemap: https://waht.agency/sitemap.xml
+Sitemap: https://srirachacreative.com/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 10

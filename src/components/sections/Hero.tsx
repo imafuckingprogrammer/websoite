@@ -18,7 +18,7 @@ const randomFonts = [
   'Arial Black, sans-serif',
 ];
 
-// Word component with hover effect (desktop) or auto-cycle (mobile/initial)
+// Word component with hover font effect (desktop) or auto-cycle (mobile/initial)
 const HoverWord: React.FC<{
   word: string;
   darkMode: boolean;
@@ -38,13 +38,11 @@ const HoverWord: React.FC<{
     setFont(null);
   }, [isMobile]);
 
-  // For auto-cycle (initial load on both, continuous on mobile)
   useEffect(() => {
     if (isAutoActive) {
       const randomFont = randomFonts[Math.floor(Math.random() * randomFonts.length)];
       setFont(randomFont);
     } else if (!isAutoActive && isMobile !== null) {
-      // Reset when not active (both mobile and desktop)
       setFont(null);
     }
   }, [isAutoActive, isMobile]);
@@ -64,8 +62,8 @@ const HoverWord: React.FC<{
   );
 };
 
-// WAHT! with RGB effect - always active on mobile
-const WahtText: React.FC<{ darkMode: boolean; isMobile: boolean | null }> = ({ darkMode, isMobile }) => {
+// "hot" with RGB color cycling - always active on mobile, hover on desktop
+const BurnText: React.FC<{ darkMode: boolean; isMobile: boolean | null }> = ({ darkMode, isMobile }) => {
   const [isHovered, setIsHovered] = useState(false);
   const shouldAnimate = isMobile === true || isHovered;
 
@@ -91,7 +89,7 @@ const WahtText: React.FC<{ darkMode: boolean; isMobile: boolean | null }> = ({ d
         duration: 0.3
       }}
     >
-      WAHT!
+      burn
     </motion.span>
   );
 };
@@ -99,12 +97,11 @@ const WahtText: React.FC<{ darkMode: boolean; isMobile: boolean | null }> = ({ d
 const Hero: React.FC = () => {
   const { darkMode } = useTheme();
   const heroRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState<boolean | null>(null); // null = not yet determined
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [activeWordIndex, setActiveWordIndex] = useState(-1);
   const [initialCycleDone, setInitialCycleDone] = useState(false);
 
-  // All words in the hero (excluding WAHT! which has its own effect)
-  const allWords = ['Websites', 'that', 'make', 'people', 'say'];
+  const allWords = ['Websites', 'that', 'the', 'competition'];
 
   // Detect mobile
   useEffect(() => {
@@ -120,7 +117,6 @@ const Hero: React.FC = () => {
   useEffect(() => {
     if (initialCycleDone || isMobile === null) return;
 
-    // Start after a brief delay for the entrance animation
     const startDelay = setTimeout(() => {
       setActiveWordIndex(0);
     }, 1000);
@@ -132,7 +128,6 @@ const Hero: React.FC = () => {
   useEffect(() => {
     if (activeWordIndex === -1 || isMobile === null) return;
 
-    // During initial cycle: 250ms, after: 500ms (mobile only)
     const isInitialCycle = !initialCycleDone;
     const interval = isInitialCycle ? 250 : 500;
 
@@ -140,18 +135,14 @@ const Hero: React.FC = () => {
       const nextIndex = activeWordIndex + 1;
 
       if (nextIndex >= allWords.length) {
-        // Completed one cycle
         if (!initialCycleDone) {
           setInitialCycleDone(true);
           if (!isMobile) {
-            // Desktop: stop cycling after initial
             setActiveWordIndex(-1);
           } else {
-            // Mobile: continue cycling
             setActiveWordIndex(0);
           }
         } else {
-          // Already past initial, loop (mobile only)
           setActiveWordIndex(0);
         }
       } else {
@@ -167,7 +158,6 @@ const Hero: React.FC = () => {
     if (isMobile === false && initialCycleDone) {
       setActiveWordIndex(-1);
     }
-    // When resizing from desktop to mobile, start cycling
     if (isMobile === true && initialCycleDone && activeWordIndex === -1) {
       setActiveWordIndex(0);
     }
@@ -190,13 +180,6 @@ const Hero: React.FC = () => {
       opacity: 1,
       transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }
     }
-  };
-
-  // Get the global index for a word based on line and word position
-  const getGlobalIndex = (lineIndex: number, wordIndex: number) => {
-    if (lineIndex === 0) return wordIndex; // "Websites" = 0, "that" = 1
-    if (lineIndex === 1) return 2 + wordIndex; // "make" = 2, "people" = 3
-    return 4 + wordIndex; // "say" = 4
   };
 
   return (
@@ -223,21 +206,19 @@ const Hero: React.FC = () => {
             </motion.span>
           </div>
 
-          {/* Line 2: "make people" */}
+          {/* Line 2: "burn the" */}
           <div className="overflow-hidden">
             <motion.span className="block" variants={lineVariants}>
-              <HoverWord word="make" darkMode={darkMode} isMobile={isMobile} isAutoActive={activeWordIndex === 2} />
+              <BurnText darkMode={darkMode} isMobile={isMobile} />
               <span>&nbsp;</span>
-              <HoverWord word="people" darkMode={darkMode} isMobile={isMobile} isAutoActive={activeWordIndex === 3} />
+              <HoverWord word="the" darkMode={darkMode} isMobile={isMobile} isAutoActive={activeWordIndex === 2} />
             </motion.span>
           </div>
 
-          {/* Line 3: "say WAHT!" */}
+          {/* Line 3: "competition" */}
           <div className="overflow-hidden">
             <motion.span className="block" variants={lineVariants}>
-              <HoverWord word="say" darkMode={darkMode} isMobile={isMobile} isAutoActive={activeWordIndex === 4} />
-              <span>&nbsp;</span>
-              <WahtText darkMode={darkMode} isMobile={isMobile} />
+              <HoverWord word="competition" darkMode={darkMode} isMobile={isMobile} isAutoActive={activeWordIndex === 3} />
             </motion.span>
           </div>
         </motion.h1>

@@ -170,7 +170,7 @@ export default function AdminPage() {
     <div className={`min-h-screen ${bgColor} ${textColor}`}>
       <header className={`border-b ${borderColor} px-6 py-4`}>
         <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <h1 className="text-xl font-bold">WAHT! Admin</h1>
+          <h1 className="text-xl font-bold">Sriracha Creative Admin</h1>
           <div className="flex items-center gap-4">
             <a href="/" className={`text-sm ${mutedText} hover:opacity-70`}>View Site</a>
             <button onClick={handleLogout} className={`text-sm ${mutedText} hover:opacity-70`}>

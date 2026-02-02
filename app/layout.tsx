@@ -5,8 +5,8 @@ import '../src/index.css'
 import 'remixicon/fonts/remixicon.css'
 
 export const metadata: Metadata = {
-  title: 'waht! | Websites That Make People Say WAHT!',
-  description: 'waht! creates stunning, responsive websites and digital experiences. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.',
+  title: 'Sriracha Creative',
+  description: 'Sriracha Creative builds websites too hot to handle. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.',
   keywords: [
     'web design',
     'web development',
@@ -27,31 +27,31 @@ export const metadata: Metadata = {
     'ecommerce website development',
     'custom web solutions',
     'website optimization',
-    'waht agency'
+    'sriracha creative agency'
   ],
-  authors: [{ name: 'waht!' }],
-  creator: 'waht!',
-  publisher: 'waht!',
+  authors: [{ name: 'Sriracha Creative' }],
+  creator: 'Sriracha Creative',
+  publisher: 'Sriracha Creative',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://waht.agency'),
+  metadataBase: new URL('https://srirachacreative.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'waht! | Websites That Make People Say WAHT!',
-    description: 'waht! creates stunning, responsive websites and digital experiences. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.',
-    url: 'https://waht.agency',
-    siteName: 'waht!',
+    title: 'Sriracha Creative',
+    description: 'Sriracha Creative builds websites too hot to handle. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.',
+    url: 'https://srirachacreative.com',
+    siteName: 'Sriracha Creative',
     images: [
       {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'waht! - Websites That Make People Say WAHT!',
+        alt: 'Sriracha Creative',
       },
     ],
     locale: 'en_US',
@@ -59,10 +59,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'waht! | Websites That Make People Say WAHT!',
-    description: 'waht! creates stunning, responsive websites and digital experiences. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.',
-    site: '@wahtagency',
-    creator: '@wahtagency',
+    title: 'Sriracha Creative',
+    description: 'Sriracha Creative builds websites too hot to handle. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.',
+    site: '@srirachacreative',
+    creator: '@srirachacreative',
     images: ['/images/og-image.png'],
   },
   robots: {
@@ -83,8 +83,8 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   other: {
     'theme-color': '#0a0a0a',
-    'apple-mobile-web-app-title': 'waht!',
-    'application-name': 'waht!',
+    'apple-mobile-web-app-title': 'Sriracha Creative',
+    'application-name': 'Sriracha Creative',
     'msapplication-TileColor': '#0a0a0a',
   },
 }
@@ -106,21 +106,21 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "waht!",
-              "alternateName": "waht! agency",
-              "description": "waht! creates stunning, responsive websites and digital experiences. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.",
-              "url": "https://waht.agency",
-              "logo": "https://waht.agency/favicon.svg",
-              "image": "https://waht.agency/images/og-image.png",
+              "name": "Sriracha Creative",
+              "alternateName": "Sriracha Creative Agency",
+              "description": "Sriracha Creative builds websites too hot to handle. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.",
+              "url": "https://srirachacreative.com",
+              "logo": "https://srirachacreative.com/favicon.svg",
+              "image": "https://srirachacreative.com/images/og-image.png",
               "sameAs": [
-                "https://twitter.com/wahtagency",
-                "https://instagram.com/waht.agency",
-                "https://x.com/wahtagency"
+                "https://twitter.com/srirachacreative",
+                "https://instagram.com/srirachacreative",
+                "https://x.com/srirachacreative"
               ],
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "customer service",
-                "email": "hello@waht.agency",
+                "email": "srirachacreative@gmail.com",
                 "telephone": "+1-718-500-7647",
                 "areaServed": "Worldwide"
               },

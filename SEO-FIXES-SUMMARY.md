@@ -48,7 +48,7 @@
 - **Updated**: `app/layout.tsx` metadata:
   - OpenGraph image path: `/images/og-image.png`
   - Twitter card image: `/images/og-image.png`
-  - JSON-LD schema image: `https://zapsapps.com/images/og-image.png`
+  - JSON-LD schema image: `https://srirachacreative.com/images/og-image.png`
 
 ---
 

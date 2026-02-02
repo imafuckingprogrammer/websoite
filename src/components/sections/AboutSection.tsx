@@ -211,14 +211,14 @@ const About: React.FC = () => {
         >
           <div className="relative overflow-hidden rounded-2xl md:rounded-3xl aspect-[4/3] shadow-xl">
             <img
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+              src="/images/about/about01.jpg"
               alt="Team collaboration"
               className="w-full h-full object-cover"
             />
           </div>
           <div className="relative overflow-hidden rounded-2xl md:rounded-3xl aspect-[4/3] md:mt-12 shadow-xl">
             <img
-              src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
+              src="/images/about/photo-1522071820081-009f0129c71c.avif"
               alt="Creative workspace"
               className="w-full h-full object-cover"
             />
@@ -243,7 +243,7 @@ const About: React.FC = () => {
               className={`text-base md:text-lg leading-relaxed ${darkMode ? 'text-white/70' : 'text-black/70'}`}
               delay={0.2}
             >
-              Founded recently by a group of ambitious students, waht! is our platform to explore design and technology. We believe great design should be accessible to everyone, and we're excited to bring our fresh perspective to every project.
+              Founded recently by a group of ambitious students, Sriracha Creative is our platform to explore design and technology. We believe great design should be accessible to everyone, and we're excited to bring our fresh perspective to every project.
             </TextReveal>
           </div>
           <div>

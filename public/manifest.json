@@ -1,7 +1,7 @@
 {
-  "name": "waht!",
-  "short_name": "waht!",
-  "description": "waht! creates stunning websites and digital experiences that make people say WAHT!",
+  "name": "Sriracha Creative",
+  "short_name": "Sriracha",
+  "description": "Sriracha Creative builds stunning websites and digital experiences that make your brand sizzle.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0a",
@@ -36,7 +36,7 @@
     {
       "name": "Contact Us",
       "short_name": "Contact",
-      "description": "Get in touch with waht!",
+      "description": "Get in touch with Sriracha Creative",
       "url": "/#contact"
     },
     {
