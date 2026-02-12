@@ -15,7 +15,7 @@ export default function TermsPage() {
               Terms of Service
             </h1>
             <p className={`text-lg ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
-              Last Updated: January 27, 2026
+              Last Updated: February 11, 2026
             </p>
           </div>
 
@@ -23,7 +23,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-2xl font-bold mb-4">1. Acceptance of Terms</h2>
               <p>
-                By engaging Sriracha Creative for any services, whether through verbal agreement, email confirmation,
+                By engaging Caret Design for any services, whether through verbal agreement, email confirmation,
                 contract signature, or payment, you accept these terms and conditions. Proceeding with any
                 project constitutes acceptance of these terms.
               </p>
@@ -137,13 +137,13 @@ export default function TermsPage() {
             <section>
               <h2 className="text-2xl font-bold mb-4">11. Contact</h2>
               <p>
-                Questions? Email us at <a href="mailto:srirachacreative@gmail.com" className="underline">srirachacreative@gmail.com</a>
+                Questions? Email us at <a href="mailto:caretdesign0@gmail.com" className="underline">caretdesign0@gmail.com</a>
               </p>
             </section>
 
             <section className={`border-t pt-8 ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
               <p className="italic opacity-70">
-                By proceeding with any project or service provided by Sriracha Creative, you acknowledge that you have read,
+                By proceeding with any project or service provided by Caret Design, you acknowledge that you have read,
                 understood, and agree to be bound by these Terms of Service.
               </p>
             </section>

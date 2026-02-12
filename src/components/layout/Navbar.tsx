@@ -18,7 +18,7 @@ const navLinks: NavLink[] = [
   { name: 'Contact', href: '#contact' },
 ];
 
-const Navbar: React.FC<{ animate?: boolean; onMenuChange?: (open: boolean) => void }> = ({ animate = true, onMenuChange }) => {
+const Navbar: React.FC<{ animate?: boolean; onMenuChange?: (open: boolean) => void; showNavbar?: boolean }> = ({ animate = true, onMenuChange, showNavbar = true }) => {
   const { darkMode, toggleDarkMode } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -87,11 +87,11 @@ const Navbar: React.FC<{ animate?: boolean; onMenuChange?: (open: boolean) => vo
             : 'py-5'
         } ${darkMode ? 'text-white' : 'text-black'}`}
         initial={animate ? { y: -100, opacity: 0 } : false}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        animate={showNavbar ? { y: 0, opacity: 1 } : { y: -100, opacity: 0 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="container-wide flex justify-between items-center">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <motion.button
               onClick={() => setMenuOpen(!menuOpen)}
               className={`flex items-center justify-center w-10 h-10 rounded-full ${darkMode ? 'hover:bg-white/10' : 'hover:bg-black/5'} transition-colors`}
@@ -114,10 +114,11 @@ const Navbar: React.FC<{ animate?: boolean; onMenuChange?: (open: boolean) => vo
 
             <button
               onClick={() => handleLinkClick('#home')}
-              className={`text-sm tracking-tight transition-colors ${darkMode ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'}`}
+              className={`font-bold tracking-tight transition-colors ${darkMode ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'}`}
+              style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
             >
-              <span className="font-medium">sriracha</span>
-              <span className={`${darkMode ? 'text-white/40' : 'text-black/40'}`}> creative</span>
+              <span className="text-2xl lg:hidden">^</span>
+              <span className="hidden lg:inline text-lg font-semibold">caret design</span>
             </button>
           </div>
 
@@ -178,10 +179,10 @@ const Navbar: React.FC<{ animate?: boolean; onMenuChange?: (open: boolean) => vo
               >
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                   <a
-                    href="mailto:srirachacreative@gmail.com"
+                    href="mailto:caretdesign0@gmail.com"
                     className={`text-sm ${darkMode ? 'text-white/50 hover:text-white' : 'text-black/50 hover:text-black'} transition-colors`}
                   >
-                    srirachacreative@gmail.com
+                    caretdesign0@gmail.com
                   </a>
                   <div className="flex items-center gap-6">
                     {['Instagram', 'X', 'GitHub'].map((name) => (

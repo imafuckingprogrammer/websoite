@@ -122,7 +122,7 @@ const ParallaxScene: React.FC = () => {
             variants={textVariants}
             custom={0.2}
           >
-            At Sriracha Creative, we blend design and technology to build digital experiences 
+            At Caret Design, we blend design and technology to build digital experiences 
             that resonate with your audience and elevate your brand.
           </motion.p>
         </div>

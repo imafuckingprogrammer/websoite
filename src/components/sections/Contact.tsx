@@ -109,11 +109,11 @@ const Contact: React.FC = () => {
               <motion.div variants={itemVariants}>
                 <p className={`text-sm uppercase tracking-wider mb-2 ${darkMode ? 'text-white/50' : 'text-black/50'}`}>Email</p>
                 <motion.a
-                  href="mailto:srirachacreative@gmail.com"
+                  href="mailto:caretdesign0@gmail.com"
                   className={`text-base md:text-lg ${darkMode ? 'hover:text-white/70' : 'hover:text-black/70'} transition-colors`}
                   whileHover={{ x: 5 }}
                 >
-                  srirachacreative@gmail.com
+                  caretdesign0@gmail.com
                 </motion.a>
               </motion.div>
 

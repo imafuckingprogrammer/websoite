@@ -69,7 +69,7 @@ const WhyUs: React.FC = () => {
           </span>
           <h2 className="text-4xl md:text-5xl font-serif mb-4 text-ink dark:text-white">We're different in the best ways</h2>
           <p className="text-accent/70 dark:text-white/60 max-w-xl mx-auto">
-            Beyond our portfolio, here's why clients continue to choose Sriracha Creative for their design needs.
+            Beyond our portfolio, here's why clients continue to choose Caret Design for their design needs.
           </p>
         </motion.div>
 

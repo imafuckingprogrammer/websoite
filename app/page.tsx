@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useRef, useState } from 'react'
+import Loader from '../src/components/ui/Loader'
 import { motion, useInView } from 'framer-motion'
 import Layout from '../src/components/layout/Layout'
 import Hero from '../src/components/sections/Hero'
@@ -9,7 +10,6 @@ import Projects from '../src/components/sections/Projects'
 import About from '../src/components/sections/AboutSection'
 import Contact from '../src/components/sections/Contact'
 import FAQ from '../src/components/ui/FAQ'
-import Loader from '../src/components/ui/Loader'
 import AnimatedButton from '../src/components/ui/AnimatedButton'
 import { useTheme } from '../src/contexts/ThemeContext'
 
@@ -149,31 +149,24 @@ function FAQSection() {
 }
 
 export default function Home() {
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [])
+  const [loading, setLoading] = useState(true);
 
   return (
     <>
-      <Loader loading={loading} />
+      {/* Loader overlays on top - content renders underneath for LCP */}
+      {loading && <Loader onLoadComplete={() => setLoading(false)} />}
 
-      {!loading && (
-        <Layout>
-          <Hero />
-          <IntroSection />
-          <Services />
-          <Projects />
-          <About />
-          <Contact />
-          <FAQSection />
-        </Layout>
-      )}
+      {/* Content renders immediately - visible to Lighthouse for LCP */}
+      {/* Navbar stays hidden until loader finishes */}
+      <Layout showNavbar={!loading}>
+        <Hero />
+        <IntroSection />
+        <Services />
+        <Projects />
+        <About />
+        <Contact />
+        <FAQSection />
+      </Layout>
     </>
-  )
+  );
 }

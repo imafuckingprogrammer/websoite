@@ -5,8 +5,8 @@ import '../src/index.css'
 import 'remixicon/fonts/remixicon.css'
 
 export const metadata: Metadata = {
-  title: 'Sriracha Creative',
-  description: 'Sriracha Creative builds websites too hot to handle. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.',
+  title: 'Caret Design',
+  description: 'Caret Design builds websites that elevate your brand. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.',
   keywords: [
     'web design',
     'web development',
@@ -27,31 +27,31 @@ export const metadata: Metadata = {
     'ecommerce website development',
     'custom web solutions',
     'website optimization',
-    'sriracha creative agency'
+    'caret design agency'
   ],
-  authors: [{ name: 'Sriracha Creative' }],
-  creator: 'Sriracha Creative',
-  publisher: 'Sriracha Creative',
+  authors: [{ name: 'Caret Design' }],
+  creator: 'Caret Design',
+  publisher: 'Caret Design',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://srirachacreative.com'),
+  metadataBase: new URL('https://caretdesign.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Sriracha Creative',
-    description: 'Sriracha Creative builds websites too hot to handle. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.',
-    url: 'https://srirachacreative.com',
-    siteName: 'Sriracha Creative',
+    title: 'Caret Design',
+    description: 'Caret Design builds websites that elevate your brand. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.',
+    url: 'https://caretdesign.com',
+    siteName: 'Caret Design',
     images: [
       {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Sriracha Creative',
+        alt: 'Caret Design',
       },
     ],
     locale: 'en_US',
@@ -59,10 +59,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sriracha Creative',
-    description: 'Sriracha Creative builds websites too hot to handle. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.',
-    site: '@srirachacreative',
-    creator: '@srirachacreative',
+    title: 'Caret Design',
+    description: 'Caret Design builds websites that elevate your brand. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.',
+    site: '@caretdesign',
+    creator: '@caretdesign',
     images: ['/images/og-image.png'],
   },
   robots: {
@@ -83,8 +83,8 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   other: {
     'theme-color': '#0a0a0a',
-    'apple-mobile-web-app-title': 'Sriracha Creative',
-    'application-name': 'Sriracha Creative',
+    'apple-mobile-web-app-title': 'Caret Design',
+    'application-name': 'Caret Design',
     'msapplication-TileColor': '#0a0a0a',
   },
 }
@@ -97,30 +97,27 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "Sriracha Creative",
-              "alternateName": "Sriracha Creative Agency",
-              "description": "Sriracha Creative builds websites too hot to handle. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.",
-              "url": "https://srirachacreative.com",
-              "logo": "https://srirachacreative.com/favicon.svg",
-              "image": "https://srirachacreative.com/images/og-image.png",
+              "name": "Caret Design",
+              "alternateName": "Caret Design Agency",
+              "description": "Caret Design builds websites that elevate your brand. Our student-founded agency specializes in web design, development, branding, and creative digital solutions.",
+              "url": "https://caretdesign.com",
+              "logo": "https://caretdesign.com/favicon.svg",
+              "image": "https://caretdesign.com/images/og-image.png",
               "sameAs": [
-                "https://twitter.com/srirachacreative",
-                "https://instagram.com/srirachacreative",
-                "https://x.com/srirachacreative"
+                "https://twitter.com/caretdesign",
+                "https://instagram.com/caretdesign",
+                "https://x.com/caretdesign"
               ],
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "customer service",
-                "email": "srirachacreative@gmail.com",
+                "email": "caretdesign0@gmail.com",
                 "telephone": "+1-718-500-7647",
                 "areaServed": "Worldwide"
               },

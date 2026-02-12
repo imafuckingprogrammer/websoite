@@ -8,9 +8,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface LayoutProps {
   children: ReactNode;
+  showNavbar?: boolean;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, showNavbar = true }) => {
   const { darkMode } = useTheme();
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -45,7 +46,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         transition={{ duration: 0.5 }}
       >
         {/* Navbar */}
-        <Navbar onMenuChange={setMenuOpen} />
+        <Navbar onMenuChange={setMenuOpen} showNavbar={showNavbar} />
         
         {/* Main content */}
         <main className="flex-grow">

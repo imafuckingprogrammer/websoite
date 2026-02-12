@@ -1,6 +1,6 @@
-# Sriracha Creative - Next.js
+# Caret Design - Next.js
 
-This is the Next.js 15 version of the Sriracha Creative landing page, migrated from Create React App for better SEO and performance.
+This is the Next.js 15 version of the Caret Design landing page, migrated from Create React App for better SEO and performance.
 
 ## What Changed?
 

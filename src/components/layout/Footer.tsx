@@ -89,7 +89,7 @@ const Footer: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div>
-            <h4 className="text-sm font-bold mb-6 tracking-tight">Sriracha Creative</h4>
+            <h4 className="text-sm font-bold mb-6 tracking-tight">Caret Design</h4>
             <p className={`text-sm ${darkMode ? 'text-white/60' : 'text-black/60'}`}>Premium web solutions for modern businesses.</p>
           </div>
 
@@ -129,8 +129,8 @@ const Footer: React.FC = () => {
             <h4 className={`text-sm font-medium mb-6 ${darkMode ? 'text-white/50' : 'text-black/50'}`}>Get in Touch</h4>
             <ul className="space-y-3">
               <li>
-                <a href="mailto:srirachacreative@gmail.com" className={`text-sm ${darkMode ? 'text-white/70 hover:text-white' : 'text-black/70 hover:text-black'} transition-colors`}>
-                  srirachacreative@gmail.com
+                <a href="mailto:caretdesign0@gmail.com" className={`text-sm ${darkMode ? 'text-white/70 hover:text-white' : 'text-black/70 hover:text-black'} transition-colors`}>
+                  caretdesign0@gmail.com
                 </a>
               </li>
             </ul>
@@ -145,7 +145,7 @@ const Footer: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <div className="flex items-center gap-2">
-            <p className={`text-sm ${darkMode ? 'text-white/50' : 'text-black/50'}`}>&copy; {currentYear} Sriracha Creative. All rights reserved.</p>
+            <p className={`text-sm ${darkMode ? 'text-white/50' : 'text-black/50'}`}>&copy; {currentYear} Caret Design. All rights reserved.</p>
             <span className={`hidden sm:block ${darkMode ? 'text-white/30' : 'text-black/30'}`}>|</span>
             <a href="/privacy" className={`text-sm ${darkMode ? 'text-white/50 hover:text-white/70' : 'text-black/50 hover:text-black/70'} transition-colors`}>Privacy Policy</a>
             <span className={`${darkMode ? 'text-white/30' : 'text-black/30'}`}>|</span>

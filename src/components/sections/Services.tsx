@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
 import AnimatedButton from '../ui/AnimatedButton';
@@ -38,14 +38,14 @@ const services: Service[] = [
   },
   {
     id: 3,
-    title: 'Branding',
-    description: 'Distinctive brand identities that tell your story and connect with your audience.',
+    title: 'Design',
+    description: 'Distinctive visual experiences that tell your story and connect with your audience.',
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
       </svg>
     ),
-    features: ['Logo Design', 'Visual Identity', 'Brand Strategy', 'Guidelines']
+    features: ['Visual Identity', 'Branding', 'Brand Strategy', 'Guidelines']
   },
   {
     id: 4,
@@ -105,13 +105,13 @@ const RainbowPill: React.FC<{ text: string; shouldAnimate: boolean; index: numbe
   );
 };
 
-const ServiceCard: React.FC<{ service: Service; index: number; isMobile: boolean }> = ({ service, index, isMobile }) => {
+const ServiceCard: React.FC<{ service: Service; index: number }> = ({ service, index }) => {
   const { darkMode } = useTheme();
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, margin: "-50px" });
-  const [hasBeenHovered, setHasBeenHovered] = useState(false);
 
-  const shouldAnimatePills = isMobile || hasBeenHovered;
+  // Always animate pills (auto mode for all devices)
+  const shouldAnimatePills = isInView;
 
   const cardVariants = {
     hidden: { opacity: 0, y: 60 },
@@ -148,7 +148,6 @@ const ServiceCard: React.FC<{ service: Service; index: number; isMobile: boolean
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       whileHover={{ y: -8 }}
-      onMouseEnter={() => !isMobile && setHasBeenHovered(true)}
     >
       <motion.div variants={contentVariants} initial="hidden" animate={isInView ? "visible" : "hidden"}>
         <motion.div
@@ -188,14 +187,6 @@ const Services: React.FC = () => {
   const { darkMode } = useTheme();
   const headerRef = useRef<HTMLDivElement>(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   const headerContainerVariants = {
     hidden: {},
@@ -238,7 +229,7 @@ const Services: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {services.map((service, index) => (
-            <ServiceCard key={service.id} service={service} index={index} isMobile={isMobile} />
+            <ServiceCard key={service.id} service={service} index={index} />
           ))}
         </div>
 

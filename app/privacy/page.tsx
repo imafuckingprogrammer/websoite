@@ -15,7 +15,7 @@ export default function PrivacyPage() {
               Privacy Policy
             </h1>
             <p className={`text-lg ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
-              Last Updated: January 27, 2026
+              Last Updated: February 11, 2026
             </p>
           </div>
 
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-2xl font-bold mb-4">1. Introduction</h2>
               <p>
-                Sriracha Creative ("we", "our", or "us") respects your privacy and is committed to protecting your personal data.
+                Caret Design ("we", "our", or "us") respects your privacy and is committed to protecting your personal data.
                 This privacy policy explains how we collect, use, and safeguard your information when you visit our
                 website or use our services.
               </p>
@@ -122,7 +122,7 @@ export default function PrivacyPage() {
               <h2 className="text-2xl font-bold mb-4">11. Contact Us</h2>
               <p>
                 For privacy-related questions or to exercise your rights, contact us at{' '}
-                <a href="mailto:srirachacreative@gmail.com" className="underline">srirachacreative@gmail.com</a>
+                <a href="mailto:caretdesign0@gmail.com" className="underline">caretdesign0@gmail.com</a>
               </p>
             </section>
 

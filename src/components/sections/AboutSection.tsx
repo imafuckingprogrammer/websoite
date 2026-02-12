@@ -151,6 +151,15 @@ const PartyCard: React.FC<{ darkMode: boolean; isInView: boolean; index: number 
         </div>
       )}
 
+      {/* Desktop indicator */}
+      {!cooldown && (
+        <div className={`hidden md:block absolute top-2 right-2 px-2 py-1 rounded text-xs ${
+          darkMode ? 'bg-white/10 text-white/60' : 'bg-black/10 text-black/60'
+        }`}>
+          click me
+        </div>
+      )}
+
       {/* Cooldown indicator */}
       {cooldown && (
         <div className={`absolute top-2 right-2 px-2 py-1 rounded text-xs ${
@@ -243,7 +252,7 @@ const About: React.FC = () => {
               className={`text-base md:text-lg leading-relaxed ${darkMode ? 'text-white/70' : 'text-black/70'}`}
               delay={0.2}
             >
-              Founded recently by a group of ambitious students, Sriracha Creative is our platform to explore design and technology. We believe great design should be accessible to everyone, and we're excited to bring our fresh perspective to every project.
+              Founded recently by a group of ambitious students, Caret Design is our platform to explore design and technology. We believe great design should be accessible to everyone, and we're excited to bring our fresh perspective to every project.
             </TextReveal>
           </div>
           <div>

@@ -27,8 +27,8 @@ const Map: React.FC = () => {
       "description": "Modern, responsive web design, branding, SEO, and digital solutions for businesses in Manhattan and New York City.",
       "provider": {
         "@type": "Organization",
-        "name": "Sriracha Creative",
-        "url": "https://srirachacreative.com"
+        "name": "Caret Design",
+        "url": "https://caretdesign.com"
       },
       "areaServed": {
         "@type": "Place",
@@ -39,7 +39,7 @@ const Map: React.FC = () => {
           "addressCountry": "US"
         }
       },
-      "url": "https://srirachacreative.com/#services"
+      "url": "https://caretdesign.com/#services"
     });
     return () => { if (scriptTag) scriptTag.remove(); };
   }, []);
@@ -79,7 +79,7 @@ const Map: React.FC = () => {
       {/* The map - fullscreen */}
       <div className="absolute inset-0 w-full h-full z-0">
         <iframe
-          title="Sriracha Creative Location"
+          title="Caret Design Location"
           className="w-full h-full border-0"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193746.35087023854!2d-74.01043972862963!3d40.70531996052708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1621912345678!5m2!1sen!2sus"
           allowFullScreen
@@ -158,11 +158,11 @@ const Map: React.FC = () => {
                     </div>
                     <div>
                       <p className="text-body font-medium">Email</p>
-                      <a 
-                        href="mailto:srirachacreative@gmail.com"
+                      <a
+                        href="mailto:caretdesign0@gmail.com"
                         className="text-body-sm opacity-70 hover:opacity-100 transition-opacity"
                       >
-                        srirachacreative@gmail.com
+                        caretdesign0@gmail.com
                       </a>
                     </div>
                   </div>
